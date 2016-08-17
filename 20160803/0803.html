@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+//        str=1;
+//        console.log( typeof(str));
+//    function print0To10() {
+//        for(var i=0;i<10;i++){
+//            console.log(i);
+//        }
+//    }
+//        print0To10();
+//        function add(a,b) {
+//            console.log(arguments);
+//            //常用参数的数组
+//            return a*b;
+//        }
+//        var c=add(3,5);
+//        console.log(c);
+
+//        function addNumber() {
+//            var result=0;
+//            for (var i=0;i<arguments.length;i++){
+//                result+=arguments[i];
+//            }
+//            return result;//输出结果
+//        }
+//        var all = addNumber(1,2);
+//        console.log("result:"+all);
+//        （function () {
+//            function a(){
+//
+//            }
+//
+//    })()
+//        var a=[1,5,3,68,20,-10];
+//        for(var i=1;i<a.length;i++){
+//            if(a[i+1]>a[i]){
+//                return a[i];
+//            }
+//        }
+//function add(a, b) {
+//    console.log(arguments);
+//    return arguments[0] + arguments[1];
+//   return a + b;
+//}
+//function addNumber() {
+//    var result = 0;
+//
+//    for (var i = 0; i < arguments.length; i++) {
+//        result += arguments[i];
+//    }
+//
+//    return result;
+//}
+//
+//var all = addNumber(1, 2, 5, 10, 20);
+//console.log("result:" + all);
+
+//console.log(1);
+//
+//var line;
+//var value;
+//for (var i = 2; i <= 8; i++) {//多少行
+//    line = "1 ";//循环，可以横着显示
+//    value = 1;//值
+//
+//    for (var j = 1; j < i; j++) {//多少行的第几个。
+//        value = (i - j) * value / j;
+//
+//        line += value + " ";
+//    }
+//
+//    console.log(line);
+//}
+        var a=[90,30,60,10,76,-10];
+        var b;
+        for(var i=0;i<a.length-1;i++){//一个一个换
+
+            for(var j=0;j<a.length;j++){//从第几个数字开始
+                if(a[j]<a[j+1]){
+                    b=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=b;
+                }
+            }
+        }
+        console.log(a)
+
+        var a=[90,30,60,10,76,-10];
+        var b;
+        for(var i=0;i<a.length-1;i++){//一个一个换
+
+            for(var j=0;j<a.length;j++){//从第几个数字开始
+                if(a[j]>a[j+1]){
+                    b=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=b;
+                }
+            }
+
+        }
+        console.log(a)
+
+
+
+
+    </script>
+</body>
+</html>

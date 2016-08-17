@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container"></div>
+<div>
+    <a href="#page=1">Page 1</a>
+    <a href="#page=2">Page 2</a>
+</div>
+</body>
+<script>
+//    (function () {
+//        var hash = location.hash.substr(1);//获取地址栏里面hash后面的东西。
+//        var string=hash.split("&");
+//        var kvs={};
+//        for(var i=0;i<string.length;i++){
+//            var kv=string[i].split("=")
+//            hashObj[kv[0]]=kv[1];
+//        }
+//
+//    })();
+    //hashchange
+    var con
+    Window.onhashchange=function (event) {
+        changePage();
+    };
+    function changePage() {
+        var hashObj={};
+
+        var hashString=location.hash;
+        if(hashString&&hashString!=""){
+            var kvStrs=location.hash.substr(1).split("&");
+            for(var i=0;i<kvStrs.length;i++){
+                var kv=kvStrs[i].split("=");
+                hashObj[kv[0]]=kv[1];
+            }
+        }
+
+        switch (hashObj.page){
+            case"2":
+                container.innerHTML="<h1>345</h1>"
+                break;
+            default:
+                container.innerHTML="<h1>123</h1>"
+                break;
+
+        }
+    }
+    changePage();
+</script>
+</html>

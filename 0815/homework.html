@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;}
+        #container{
+            height:900px;
+            width:1920px;
+            position: relative;
+            left:50%;
+            margin-left:-960px;
+            overflow: hidden;
+        }
+        .image{
+            float:left;
+            position: relative;
+            width:1920px;
+        }
+        .image img{
+            float:left;width:1920px;
+        }
+        #content{
+            width:9600px;
+            overflow: hidden;
+            position: relative;
+        }
+        #fix_b{
+            position: fixed;float: left;
+            width: 50px;height: 50px;background-color: black;
+            left:100px;top:300px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            color:white;
+        }
+        #fix_a{
+            position: fixed;float: right;
+            width: 50px;height: 50px;background-color: black;
+            right:100px;top:300px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        <div class="image"><img src="banner01.jpg"></div>
+        <div class="image"><img src="banner02.jpg"></div>
+        <div class="image"><img src="banner03.png"></div>
+        <div class="image"><img src="banner04.jpg"></div>
+        <div class="image"><img src="newbanner.jpg"></div>
+    </div>
+    <div id="fix_a">→</div>
+    <div id="fix_b">←</div>
+
+</div>
+
+</body>
+<script>
+
+        var content = document.querySelector("#content");
+        var contentX = 0;//当前的x
+        var imgWidth = 1920;
+        var duration = 20;//帧
+        var index = 0;//当前显示第几个图片
+        var bb=2000;
+        var cc=0;
+        var func=setInterval(function aa() {
+            index++;
+            if (index > 4) {
+                index = 0;
+            }
+            var endX = -imgWidth * index;//动画结束点的位置，
+            var distanceMoved = 0;//距离移动；
+            var endDistance = Math.abs(endX - contentX);//结束位置
+            var speed = (endX - contentX) / duration;//用多少帧来完成动画
+            var absSpeed = Math.abs(speed);
+            var id = setInterval(function () {
+                contentX += speed;
+                distanceMoved += absSpeed;
+                if (distanceMoved > endDistance) {
+                    contentX = endX;
+                    clearInterval(id);
+                }
+
+                content.style.left = contentX + "px";
+            }, 20);//时间间隔20，是该动画为50帧频的动画
+
+            var fixa = document.querySelector("#fix_a");
+            var fixb = document.querySelector("#fix_b");
+            fixa.onclick=function () {
+                content.style.left=contentX-distanceMoved+"px";}
+            fixb.onclick=function () {
+                content.style.left=contentX+distanceMoved+"px";}
+        }, bb);
+
+//        var fixa = document.querySelector("#fix_a");
+//        var fixb = document.querySelector("#fix_b");
+//        contentX += speed;
+//        fixa.onclick=function () {
+//            content.style.left=contentX-1920+"px";}
+//        fixb.onclick=function () {
+//            content.style.left=contentX+1920+"px";}
+
+
+//                function aa() {
+//            content.style.left=contentX+"px";
+//            content.style.transform = "translateX(" + 1920 + "px)";
+
+//        };
+//        (function () {
+//
+//            var carouselContent = document.querySelector("#carousel .carousel-content");
+//
+//            function moveTo(target, fromX, toX, fromY, toY, duration, completeHandler) {
+//                var fps = 50;//帧频，每秒的帧数/frames per second
+//                var frameDuration = Math.round(1000 / fps);//一帧多少秒
+//                var frames = Math.round(duration / 1000 * fps);// 一秒多少帧，把秒转换为帧数
+//                var frameIndex = 0;
+//                var x = fromX, y = fromY;
+//                var speedX = (toX - fromX) / frames;
+//                var speedY = (toY - fromY) / frames;
+//
+//                var id = setInterval(function () {
+//
+//                    x += speedX;
+//                    y += speedY;
+//
+//                    frameIndex++;
+//                    if (frameIndex >= frames) {
+//                        clearInterval(id);
+//                        x = toX;
+//                        y = toY;
+//
+//                        if (completeHandler) {
+//                            completeHandler();
+//                        }
+//                    }
+//
+//                    target.style.left = x + "px";
+//                    target.style.top = y + "px";
+//                }, frameDuration);
+//            }
+//
+//            function createImageContainer(imgSrc) {
+//                var div = document.createElement("div");
+//                div.className = "image-container";
+//
+//                var img = document.createElement("img");
+//                img.src = imgSrc;
+//                div.appendChild(img);
+//                return div;
+//            }
+//            //carouselContent.appendChild(createImageContainer("images/1.jpg"));
+//            var carouselImagesArray = [
+//                createImageContainer("images/1.jpg"),
+//                createImageContainer("images/2.jpg"),
+//                createImageContainer("images/3.jpg")
+//            ];
+//
+//
+//            var currentVisibleImage;
+//
+////            moveTo(carouselContent, 200, 0, 0, 0, 3000);
+//            function showCarouselImage(index) {
+//                if (currentVisibleImage) {
+//                    carouselContent.removeChild(currentVisibleImage);
+//                }
+//
+//                currentVisibleImage = carouselImagesArray[index];
+//                carouselContent.appendChild(currentVisibleImage);
+//            }
+//
+//            function init() {
+//
+//                var index = 0;
+//                showCarouselImage(index);
+//                setInterval(function () {
+//                    index++;
+//
+//                    if (index >= carouselImagesArray.length) {
+//                        index = 0;
+//                    }
+//                    showCarouselImage(index);
+//                }, 3000);
+//            }
+//
+//            init();
+//        })();
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{width:200px;height:200px;background-color: red;margin:0 auto}
+        #div_2{width:200px;height:200px;background-color: blue;margin:0 auto;display: none;}
+    </style>
+</head>
+<body>
+
+    <div id="div">正面文字</div>
+    <div id="div_2">反面文字</div>
+
+</body>
+<script>
+    (function () {
+        var div = document.getElementById("div");
+        var div_2 = document.getElementById("div_2");
+        div.onclick = function (event) {
+            var width = div.clientWidth;
+            var frams = 50;
+            var speedX = width / frams;
+            var id = setInterval(function () {
+                width -= speedX;
+                div.style.width = width+"px";
+                if (width<= 0) {
+                    clearInterval(id);
+                    div.style.display = "none";
+
+                    var id2=setInterval(function () {
+                        width += speedX;
+                        div_2.style.width = width+"px";
+                        if(width==200){
+                            clearInterval(id2);
+                        }
+                    });
+
+
+                    div_2.style.display = "block";
+                }
+
+            }, 1000 / frams);
+        };
+
+        div_2.onclick = function (event) {
+            var width = div_2.clientWidth;
+            var frams = 50;
+            var speedX = width / frams;
+            var id_2 = setInterval(function () {
+                width -= speedX;
+                div_2.style.width = width + "px";
+                if (width<= 0) {
+                    clearInterval(id_2);
+                    div_2.style.display = "none";
+
+                    var id3=setInterval(function () {
+                        width += speedX;
+                        div.style.width = width+"px";
+                        if(width==200){
+                            clearInterval(id3);
+                        }
+                    });
+
+                    div.style.display = "block";
+                }
+
+            }, 1000 / frams);
+
+        }
+    })();
+</script>
+</html>
+// playing让动画正在执行当中，不再执行动画的操作.防止动画反复执行

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #carousel-container {
+            position: relative;
+            left: 50%;
+            width: 0;
+        }
+
+        #carousel {
+            width: 800px;
+            height: 600px;
+            position: relative;
+            left: -400px;
+            overflow: hidden;
+        }
+        #carousel .carousel-button {
+            position: absolute;
+            height: 100%;
+            top: 50%;
+            font-size: 40pt;
+        }
+
+        #carousel .btn-pre {
+            left: 10px;
+        }
+
+        #carousel .btn-next {
+            right: 10px;
+        }
+
+        #carousel .carousel-content {
+            width: 3000px;
+            height: 2000px;
+            position: relative;
+        }
+
+        #carousel .image-container {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="carousel-container">
+        <div id="carousel">
+            <div class="carousel-content"></div>
+            <div class="carousel-button btn-pre">&lt;</div>
+            <div class="carousel-button btn-next">&gt;</div>
+        </div>
+    </div>
+</div>
+<script src="js17.js"></script>
+</body>
+<!--<script>-->
+
+
+        <!--/**-->
+         <!--* 容纳轮播图片Div的容器-->
+         <!--* @type {Element}-->
+         <!--*/-->
+        <!--var carouselContent = document.querySelector("#carousel .carousel-content");-->
+
+        <!--/**-->
+         <!--* 图片在数组中的位置-->
+         <!--* @type {number}-->
+         <!--*/-->
+        <!--var imageIndex = 0;-->
+
+        <!--/**-->
+         <!--* 用于切换图片的计时器-->
+         <!--* @type {number}-->
+         <!--*/-->
+        <!--var switchImageTimerId = -1;-->
+
+        <!--/**-->
+         <!--* 该变量用于指示当前是否正在切换图片-->
+         <!--* @type {boolean}-->
+         <!--*/-->
+        <!--var switchImageAnimationPlaying = false;-->
+
+        <!--/**-->
+         <!--* 把一个对象从某位置移动到目标位置-->
+         <!--* @param target 被移动的对象-->
+         <!--* @param fromX 开始left位置-->
+         <!--* @param toX 结束点的left位置-->
+         <!--* @param fromY 开始点的top位置-->
+         <!--* @param toY 结束点的top位置-->
+         <!--* @param duration 动画效果共花费的时间,单位是毫秒-->
+         <!--* @param completeHandler 动画完成后的回调函数-->
+         <!--*/-->
+    <!--(function () {-->
+
+        <!--var carouselContent = document.querySelector("#carousel .carousel-content");-->
+
+        <!--function moveTo(target, fromX, toX, fromY, toY, duration, completeHandler) {-->
+            <!--var fps = 50;//帧频，每秒的帧数/frames per second-->
+            <!--var frameDuration = Math.round(1000 / fps);//一帧多少秒-->
+            <!--var frames = Math.round(duration / 1000 * fps);// 一秒多少帧，把秒转换为帧数-->
+            <!--var frameIndex = 0;-->
+            <!--var x = fromX, y = fromY;-->
+            <!--var speedX = (toX - fromX) / frames;-->
+            <!--var speedY = (toY - fromY) / frames;-->
+
+            <!--var id = setInterval(function () {-->
+
+                <!--x += speedX;-->
+                <!--y += speedY;-->
+
+                <!--frameIndex++;-->
+                <!--if (frameIndex >= frames) {-->
+                    <!--clearInterval(id);-->
+                    <!--x = toX;-->
+                    <!--y = toY;-->
+
+                    <!--if (completeHandler) {-->
+                        <!--completeHandler(target);-->
+                    <!--}-->
+                <!--}-->
+
+                <!--target.style.left = x + "px";-->
+                <!--target.style.top = y + "px";-->
+            <!--}, frameDuration);-->
+        <!--}-->
+        <!--/**-->
+         <!--* 根据一个图片的url创建一个包括img的div-->
+         <!--* @param imgSrc {String} 图片的url-->
+         <!--* @returns {HTMLDivElement} 被创建的div-->
+         <!--*/-->
+        <!--function createImageContainer(imgSrc) {-->
+            <!--var div = document.createElement("div");-->
+            <!--div.className = "image-container";-->
+
+            <!--var img = document.createElement("img");-->
+            <!--img.src = imgSrc;-->
+            <!--div.appendChild(img);-->
+            <!--return div;-->
+        <!--}-->
+        <!--//carouselContent.appendChild(createImageContainer("images/1.jpg"));-->
+        <!--/**-->
+         <!--* 轮播图div数组-->
+         <!--* @type {*[]}-->
+         <!--*/-->
+        <!--var carouselImagesArray = [-->
+            <!--createImageContainer("banner01.jpg"),-->
+            <!--createImageContainer("banner02.jpg"),-->
+            <!--createImageContainer("banner04.jpg")-->
+        <!--];-->
+
+
+        <!--var currentVisibleImage;-->
+
+<!--//            moveTo(carouselContent, 200, 0, 0, 0, 3000);-->
+<!--//        function showCarouselImage(index) {-->
+
+        <!--/**-->
+         <!--* 呈现下一张图片-->
+         <!--*/-->
+        <!--function showNextCarouselImage() {-->
+<!--//            imageIndex++;-->
+<!--//            if (imageIndex >= carouselImagesArray.length) {-->
+<!--//                imageIndex = 0;-->
+<!--//            }-->
+
+            <!--if (!switchImageAnimationPlaying) {-->
+                <!--switchImageAnimationPlaying = true;-->
+                <!--imageIndex++;-->
+                <!--if (imageIndex >= carouselImagesArray.length) {-->
+                    <!--imageIndex = 0;-->
+                <!--}-->
+
+                <!--if (currentVisibleImage) {-->
+                    <!--moveTo(currentVisibleImage, 0, -800, 0, 0, 500, function (target) {-->
+                        <!--carouselContent.removeChild(target);-->
+                    <!--});-->
+                <!--}-->
+
+<!--//            if (currentVisibleImage) {-->
+<!--////                carouselContent.removeChild(currentVisibleImage);-->
+<!--//                moveTo(currentVisibleImage, 0, -800, 0, 0, 500, function (target) {-->
+<!--//                    carouselContent.removeChild(target);-->
+
+                <!--currentVisibleImage = carouselImagesArray[imageIndex];-->
+                <!--carouselContent.appendChild(currentVisibleImage);-->
+                <!--currentVisibleImage.style.left = "800px";-->
+                <!--moveTo(currentVisibleImage, 800, 0, 0, 0, 500, function () {-->
+                    <!--switchImageAnimationPlaying = false;-->
+                <!--});-->
+            <!--}-->
+
+<!--//            currentVisibleImage = carouselImagesArray[imageIndex];-->
+<!--//            carouselContent.appendChild(currentVisibleImage);-->
+<!--//            currentVisibleImage.style.left = "800px";-->
+<!--//            moveTo(currentVisibleImage, 800, 0, 0, 0, 500);-->
+        <!--}-->
+
+<!--//        function init() {-->
+        <!--/**-->
+         <!--* 呈现上一张图片-->
+         <!--*/-->
+        <!--function showPreCarouselImage() {-->
+<!--//            imageIndex&#45;&#45;;-->
+<!--//            currentVisibleImage = carouselImagesArray[0];-->
+            <!--if (!switchImageAnimationPlaying) {-->
+                <!--switchImageAnimationPlaying = true;-->
+                <!--imageIndex&#45;&#45;;-->
+                <!--if (imageIndex < 0) {-->
+                    <!--imageIndex = carouselImagesArray.length - 1;-->
+                <!--}-->
+
+                <!--if (currentVisibleImage) {-->
+                    <!--moveTo(currentVisibleImage, 0, 800, 0, 0, 500, function (target) {-->
+                        <!--carouselContent.removeChild(target);-->
+                    <!--});-->
+                <!--}-->
+
+<!--//            currentVisibleImage = carouselImagesArray[imageIndex];-->
+<!--//-->
+<!--//            carouselContent.appendChild(currentVisibleImage);-->
+<!--//-->
+<!--//            currentVisibleImage.style.left = "-800px";-->
+<!--//            moveTo(currentVisibleImage, -800, 0, 0, 0, 500);-->
+
+
+<!--//                currentVisibleImage = carouselImagesArray[imageIndex];-->
+<!--//                carouselContent.appendChild(currentVisibleImage);-->
+<!--//                currentVisibleImage.style.left = "-800px";-->
+<!--//                moveTo(currentVisibleImage, -800, 0, 0, 0, 500, function () {-->
+<!--//                    switchImageAnimationPlaying = false;-->
+<!--//                });-->
+<!--//            }-->
+
+<!--//            var index = 0;-->
+<!--////            showCarouselImage(index);-->
+<!--//            setInterval(function () {-->
+<!--//                index++;-->
+
+            <!--function addInitCarouselImage() {-->
+                <!--imageIndex = 0;-->
+                <!--currentVisibleImage = carouselImagesArray[imageIndex];-->
+                <!--carouselContent.appendChild(currentVisibleImage);-->
+            <!--}-->
+
+<!--//                if (index >= carouselImagesArray.length) {-->
+<!--//                    index = 0;-->
+<!--//                }-->
+<!--//                showCarouselImage(index);-->
+            <!--function addListeners() {-->
+                <!--document.querySelector("#carousel .btn-pre").onclick = function () {-->
+                    <!--showPreCarouselImage();-->
+                    <!--restartSwitchImageTimer();-->
+                <!--};-->
+
+                <!--document.querySelector("#carousel .btn-next").onclick = function () {-->
+                    <!--showNextCarouselImage();-->
+                    <!--restartSwitchImageTimer();-->
+                <!--};-->
+            <!--}-->
+
+            <!--function restartSwitchImageTimer() {-->
+                <!--if (switchImageTimerId != -1) {-->
+                    <!--clearInterval(switchImageTimerId);-->
+                <!--}-->
+
+                <!--switchImageTimerId = setInterval(function () {-->
+                    <!--showNextCarouselImage();-->
+                    <!--// showPreCarouselImage();-->
+                <!--}, 5000);-->
+            <!--}-->
+
+
+            <!--function init() {-->
+
+<!--//            addInitCarouselImage();-->
+                <!--addListeners();-->
+
+<!--//            setInterval(function () {-->
+<!--//                // showNextCarouselImage();-->
+<!--//                showPreCarouselImage();-->
+<!--//            }, 3000);-->
+                <!--addInitCarouselImage();-->
+                <!--restartSwitchImageTimer();-->
+            <!--}-->
+
+            <!--init();-->
+
+    <!--})();-->
+<!--</script>-->
+</html>

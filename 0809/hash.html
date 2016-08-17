@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container"></div>
+<div>
+    <a href="#page=1">Page 1</a>
+    <a href="#page=2">Page 2</a>
+</div>
+
+<script src="main.js"></script>
+</body>
+<script>
+    (function () {
+
+        var container = document.querySelector("#container");
+
+        window.onhashchange = function (event) {
+//            console.log(event);
+            changePage();
+        };
+
+        function changePage() {
+            var hashObj = {};
+
+            var hashString = location.hash;//#page=1&title=Page1
+            if (hashString && hashString != "") {
+                var kvStrs = location.hash.substr(1).split("&");//page
+                for (var i = 0; i < kvStrs.length; i++) {
+                    var kv = kvStrs[i].split("=");
+                    hashObj[kv[0]] = kv[1];
+                }
+            }
+
+            switch (hashObj.page) {
+                case "2":
+                    container.innerHTML = "<img src='photo.jpg'>";
+                    break;
+                default:
+                    container.innerHTML = "<h1>Hello World</h1>";
+                    break;
+            }
+        }
+
+        changePage();
+
+    })();
+</script>
+</html>

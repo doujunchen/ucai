@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    (function () {
+        function makeString(theString,params) {
+            var start,end;
+            while(true){
+                start=theString.indexOf("${");
+                if(start!=-1){
+                    end=theString.indexOf("}",start);
+
+                    var key =theString.substring(start+2,end);//name
+                    theString=theString.substring(0,start)+params[key]+ theString.substring(end + 1);
+                }else{
+                    break;
+                }
+            }
+            return theString;
+        }
+        console.log(makeString("Hello ${name},${age}",{name:"ucai",age:"20"}))
+    })();
+</script>
+</html>

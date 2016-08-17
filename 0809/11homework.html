@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <audio id="player" src="actor.mp3" controls="controls"></audio>
+</body>
+<script>
+    (function () {
+
+         var player = document.querySelector("#player");
+
+         setInterval(function () {
+
+             console.log(player.currentTime);
+
+         }, 1000);
+
+//        $.get("241197990.lrc").done(function (data) {
+//            console.log(data);
+//        });
+
+
+    })();
+    (function () {
+
+        function PlaySoundWithLRC() {
+            this.songName = "actor";
+            this.syncLrcThreadId = -1;
+            this.lrcMap = {};
+
+            this._audio = document.createElement("audio");
+            this._audio.autoplay = true;
+            this._audio.src = this.songName + ".mp3";
+
+            this.loadLrc();
+        }
+
+        PlaySoundWithLRC.prototype.loadLrc = function () {
+
+            (function (self) {
+                $.get(241197990 + ".lrc").done(function (data) {
+                    var lrc = data;
+
+                    var lines = data.split("\n");
+                    lines.forEach(function (line) {
+
+                        var startIndex = line.indexOf("[");
+                        if (startIndex != -1) {
+                            var endIndex = line.indexOf(":", startIndex);
+                            if (endIndex != -1) {
+                                var minStr = line.substring(startIndex + 1, endIndex);
+                                var min = parseInt(minStr);
+
+                                startIndex = endIndex + 1;
+                                endIndex = line.indexOf(".", startIndex);
+                                if (endIndex != -1) {
+                                    var secStr = line.substring(startIndex, endIndex);
+                                    var sec = parseInt(secStr);
+
+                                    startIndex = line.indexOf("]", endIndex);
+
+                                    if (startIndex != -1) {
+                                        self.lrcMap[min * 20 + sec] = line.substring(startIndex + 1);
+                                    }
+                                }
+                            }
+                        }
+
+                    });
+
+                    self.startSyncLRC();
+                }).fail(function () {
+                    console.error("Fail to load lrc");
+                });
+            })(this);
+        };
+
+        PlaySoundWithLRC.prototype.startSyncLRC = function () {
+            if (this.syncLrcThreadId == -1) {
+                setInterval(this.syncLrcHandler.bind(this), 1000);
+            }
+        };
+
+        PlaySoundWithLRC.prototype.stopSyncLRC = function () {
+            if (this.syncLrcThreadId != -1) {
+                clearInterval(this.syncLrcThreadId);
+                this.syncLrcThreadId = -1;
+            }
+        };
+
+        PlaySoundWithLRC.prototype.syncLrcHandler = function () {
+            var content = this.lrcMap[Math.round(this._audio.currentTime)];
+
+            if (content) {
+                document.body.innerHTML = content;
+            }
+        };
+
+        new PlaySoundWithLRC();
+    })();
+
+</script>
+</html>

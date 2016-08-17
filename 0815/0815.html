@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+
+<audio id="player" controls="controls" src="Heartbeats.mp3"></audio>
+<div id="container"></div>
+</body>
+<script>
+//    $.get("Heartbeats.lrc").done(function (data) {
+//        var p = /\[(\d{2}):(\d{2})\.\d{2}\](.+)/g;
+//        while (true) {
+//            var result = p.exec(data);
+//
+//            if (result) {
+//                var min = parseInt(result[1]);
+//                var sec = parseInt(result[2]);
+//                var content = result[3];
+//
+//                console.log(min * 60 + sec, content);
+//            } else {
+//                break;
+//            }
+//        }
+//    });
+
+    $.get("Heartbeats.lrc").done(function (e) {
+        var player = document.querySelector("#player");
+        var lrc = null;
+        var container = document.querySelector("#container");
+        var lrcObject={};
+        var p=/\[(\d{2}):(\d{2})\.\d{2}\](.+)/g;
+        while(true){
+            var result =p.exec(e);
+            if(result){
+                var min=parseInt(result[1]);
+                var sec=parseInt(result[2]);//将字符串转换为整数
+                var content=result[3];
+                var time=min*60+sec;
+//                        ,content;
+//                console.log(index);
+                lrcObject[time] = content;
+            }else{
+                break;
+            }
+        }
+        setInterval(function () {
+             var content=lrcObject[Math.floor(player.currentTime)];
+                if(content){
+                    container.innerHTML=content;
+                }
+        },1000);
+    });
+
+</script>
+</html>

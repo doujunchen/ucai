@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #a{width: 300px;height: 300px;background-color: red;}
+        #b{width: 200px;height: 200px;background-color: green;}
+        #c{width: 100px;height: 100px;background-color: blue;}
+    </style>
+</head>
+<body>
+    <div id="a">
+        <div id="b">
+            <div id="c"></div>
+        </div>
+    </div>
+</body>
+<script>
+    (function () {
+        var a=document.getElementById("a");
+        var b=document.getElementById("b");
+        var c=document.getElementById("c");
+        a.onclick=function (event) {
+            console.log("a clicked");
+        };
+        b.onclick=function (event) {
+            console.log("b clicked");
+        };
+        c.onclick=function (event) {
+            console.log("c clicked");
+            //event.stopImmediatePropagation()//阻止当前节点包括后续监听器等的冒泡行为的发生。
+            event.stopPropagation()//只是阻止当前事件的进一步冒泡行为。
+        };
+    })();
+</script>
+</html>
+<!--事件的三个阶段-->
+<!--捕获阶段从外到内，冒泡阶段从内到外。第三个值是true是侦听捕获阶段的行为（捕获阶段）-->
+<!--目标阶段。当前点击的是谁就是谁的目标事件。也可以理解为冒泡阶段就是目标阶段-->
+<!--当对话框弹出时其后面不响应事件的对话框称为;模态框-->
+<!--先捕获然后执行，捕获是找到阶段，从外到内、目标是执行阶段，从内到外-->
+<!--目标.eventPhase 结果是：1捕获阶段 2目标阶段 3冒泡阶段-->

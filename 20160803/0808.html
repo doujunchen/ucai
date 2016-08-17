@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*#div{*/
+            /*width:200px;height:200px;background-color: red;*/
+        /*}*/
+        #container{width:200px;height:200px;}
+        .card{width:100%;height:100%;background-color: red;margin:0 auto}
+        .blue{width:100%;height:100%;background-color: blue;margin:0 auto}
+    </style>
+
+</head>
+<body>
+    <!--<div id="div"></div>-->
+    <div id="container">
+        <div class="card"></div>
+        <div class="blue"></div>
+    </div>
+</body>
+<script>
+//    function divClick(event) {
+//        console.log(event.target,this);//target事件的目标对象；(addEL在哪个上面写的就是哪个);this效果一样;
+//        div.removeEventListener("click",divClick);
+//    }
+//    div.addEventListener("click",divClick);
+
+//    function div_clickedHandler(event) {
+//        document.body.removeChild(event.target);
+//    }
+//    for(var i=0;i<10;i++){
+//        var div =document.createElement("div");
+//        div.innerHTML="Item";
+//        document.body.appendChild(div);
+//        div.addEventListener("click",div_clickedHandler);
+//    }
+    //事件的取消
+//(function () {
+//        var div = document.getElementById("div");
+//        div.addEventListener("contextmenu", function (event){
+//        event.preventDefault();//阻止事件默认行为
+//    });
+//
+//    })();
+//换颜色
+//(function () {
+//    var color=["red","green","blue"];
+//    var index=0;
+//
+//    var div = document.getElementById("div");
+//    div.addEventListener("click",function (event) {
+//        index++;
+//        if(index>=color.length){
+//            index=0;
+//        }
+//        event.target.style.backgroundColor=color[index];
+//    });
+//})();
+//(function () {
+//    var div = document.getElementById("div");
+//    div.backgroundImage.src="../../images/卧龙控股_06.gif";
+//})();
+//var div = document.getElementById("div");
+//(function () {
+//    var frames=50;
+//    var div=document.getElementById("div");
+//    div.onclick=function (event) {
+//        var width=div.clientWidth;
+//        var height=div.clientHeight;
+//        var alpha=1;
+//        var speedAlpha=1/frames;
+//        var speedX=width/frames;
+//        var speedY=height/frames;
+//        var id=setInterval(function () {
+//            width-=speedX;
+//            height-=speedY;
+//            alpha-=speedAlpha;
+//
+//            div.style.width=width+"px";
+//            div.style.height=height+"px";
+//            div.style.opacity=alpha;
+//
+//            if(width<=0){
+//                clearInterval(id);
+//                div.style.display="none";
+//            }
+//
+//        },5000/frames)
+//    }
+//})();
+
+(function () {
+    var fps=50;
+    var frames=50;
+    var container=document.getElementById("container");
+    var card=document.querySelector("#container .card");
+    var blue=document.querySelector("#container .blue");
+    blue.style.display="none"
+    container.onclick=function (event) {
+        var widthPercent=100;
+        var speedX=widthPercent/frames;
+        var id=setInterval(function () {
+
+            widthPercent-=speedX;
+
+            card.style.width=widthPercent+"px";
+//            blue.style.width=widthPercent+"px";
+
+            if(widthPercent<=0){
+                clearInterval(id);
+                card.style.display="none";
+                blue.style.display="block"
+            }
+
+        },1000/frames)
+    }
+})();
+
+
+</script>
+</html>

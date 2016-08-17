@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+        var tab=document.createElement("table");
+        tab.width="100px";
+        tab.border="1px";
+        document.body.appendChild(tab);
+        for(var i=0;i<5;i++){
+            var tr=document.createElement("tr");
+            //tr.innerHTML="ucai";
+            tab.appendChild(tr);
+        }
+        var td=document.createElement("td");
+        td.innerHTML="姓名";
+        tr.insertBefore(td,tr.childNodes[0]);
+        var td1=document.createElement("td");
+        td1.innerHTML="分数";
+        tr.insertBefore(td1,tr.childNodes[0]);
+
+//        var tr1 = document.getElementById("td1");
+//        td.insertBefore(tr1,childNodes[0]);
+
+
+</script>
+</body>
+</html>

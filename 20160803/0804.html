@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="bt"></button>
+<div class="av"></div>
+<div class="av"></div>
+<div class="av"></div>
+<script>
+        //对象
+//        (function () {
+//           var obj={name:"i",};
+//            console.log(obj);
+//        })()
+//        function init() {
+//            document.body.innerHTML="jahfkjdhfkjs"
+//
+//        }
+//        onload=function () {
+//            init();
+//        }
+//        function init() {
+        //           var obj={name:"i",};
+        //             console.log(date.getTime());
+        //        }
+
+        var str ="hello world"
+        //str = str.substr(0,3);//第一个参数是开始截取的位置，第二个是截取的长度，
+        //str = str.substring(0,3);//第一个参数是开始截取的位置，第二个是截取结束的位置，
+        console.log(str);
+        console.log(str.charAt(0));//只要第一位
+        str=str.replace("o","a");
+        str=str.replace(/o/g,"a");//g是指所有的，替换成a
+
+        console.log(str);
+        console.log(str.indexOf("l"));//查找l的位置，没有是-1;只能第一个、
+        console.log(str.indexOf("l",5));//5是开始搜索的位置
+        //toUpperCase大写
+        //toLowerCase小写
+        //把字符串分割成数组：var words=str.split(" ");要空格，不是空字符。
+        //把字符串转换成其他类型：
+        var numStr="100.3";//(只有数字型字符串能转，否则结果是NaN)
+        var num=parseInt(numStr);//会忽略小数点以后
+        console.log(num*2);
+        var num=parseFloat(numStr);//小数
+        console.log(num);
+    var bt=document.getElementById("bt");
+    bt.innerHTML="fuck me";
+    bt.onclick=function () {
+        alert("oh yeah")
+    }
+    var divs=document.getElementsByClassName("av");//类名（byTagName是根据节点名）
+    for(var i=0;i<divs.length;i++){
+        divs[i].innerHTML="come on"+i;
+    }
+//    createElement
+//    appendChild
+        (function () {
+
+            // document.body.innerHTML = "<h1>Hello World</h1>";
+
+
+            for (var i = 0; i < 10; i++) {
+                var div = document.createElement("div");
+                div.innerHTML = "div " + i;
+                document.body.appendChild(div);
+
+                div.onclick = function () {
+                    document.body.removeChild(this);
+                }
+            }
+
+        })();
+        var str = "Hello World";
+        // var index = str.indexOf("", 1);
+        var words = str.split("").reverse().join("");
+        console.log(words);
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

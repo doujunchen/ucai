@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {  display: block;  }
+        .face{border: solid;width: 200px; height: 200px;position: absolute;border-radius: 100px;}
+        .eye{width: 60px;height: 60px;border: solid; border-radius: 50%; position: absolute;top: 46px;}
+        .lefteyeball{left: 20px;}
+        .righteyeball{left: 110px;}
+        .eyeball{border-radius: 50%; width: 26px;height: 26px;
+            background-color: black; position: absolute;left:0;top:0;}
+    </style>
+</head>
+<body>
+    <div class="face">
+        <div class="eye lefteyeball">
+            <div class="eyeball"></div>
+        </div>
+        <div class="eye righteyeball">
+            <div class="eyeball"></div>
+        </div>
+    </div>
+</body>
+<script>
+    var eyeballPositionY=70;
+    var lefteyeballGlobalPositionX=40;
+    var righteyeballGlobalPositionX=40;
+    var R=10;
+    var eyeBallStartX=20;
+    var eyeBallStartY=20;
+    var leftEye=document.querySelector(".left");
+    var rightEye=document.querySelector(".right");
+
+
+    document.addEventListener("mousemove",function () {
+        console.log(event.pageX,event.pageY);
+        var dx=event.pageX-lefteyeballGlobalPositionX;
+        var dy=event.pageY-eyeballPositionY;
+        var angel=Math.atan(dy/dx);
+        var leftEyeX=R*Math.cos(angle)+lefteyeballGlobalPositionX;
+        console.log(angel,event.pageX,event.pageY);
+
+    });
+
+//    function a(){
+//        addEventListener()
+//    }
+
+
+//function a(event){
+//    var eyeball = document.getElementsByClassName("eyeball");
+////    eyeball.style.left="clientX";
+////    eyeball.style.top="clientX";
+//    eyeball.style.left = eyeball.pageX+10+"px";
+//    eyeball.style.top = event.pageY+10+"px";
+//
+//}
+//window.onload=function(){
+//    document.body.onmousemove = a;
+//}
+//var eyeball = document.getElementsByClassName("eyeball");
+//eyeball.style.width =500+"px";
+//document.onmousemove = function(evt){
+//    var oEvent = evt || window.event;
+//    var scrollleft = document.documentElement.scrollLeft || document.body.scrollLeft;
+//    var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+////    eyeball.style.left = oEvent.clientX + scrollleft +10 +"px";
+////    eyeball.style.top = oEvent.clientY + scrolltop + 10 + "px";
+//    eyeball.style.pixelLeft = window.event.clientX + window.document.body.scrollLeft + 6;
+//}
+//document.onmousemove = function () {
+//    var divx = window.event.clientX;
+//    var divy = window.event.clientY;
+//    var eyeball = document.getElementsByClassName("eyeball");
+//
+//    eyeball.style.left = divx;
+//    eyeball.style.top = divy;
+//}
+//onmousemove();
+
+
+
+//(function (event) {
+//
+//        eyeball.addEventListener("mousemove",a())
+//    })();
+
+
+
+//(function () {
+//
+//    function Eyeball() {
+//
+//        this._eyeballNode = document.createElement("div");
+//        this._eyeballNode.className = "eyeball";
+//
+//        this.ORIGIN_LEFT = 16;
+//        this.ORIGIN_TOP = 16;
+//        this.R = 16;
+//
+//        this._left = this.ORIGIN_LEFT;
+//        this._top = this.ORIGIN_TOP;
+//        this._originGlobalLeft = -1;
+//        this._originGlobalTop = -1;
+//
+//        this.syncStyle();
+//
+//        document.addEventListener("mousemove", this.mouseMoveHandler.bind(this));
+//    }
+//
+//    Object.defineProperty(Eyeball.prototype, "eyeballNode", {
+//        get: function () {
+//            return this._eyeballNode;
+//        }
+//    });
+//
+//    Eyeball.prototype.syncStyle = function () {
+//        this._eyeballNode.style.left = this._left + "px";
+//        this._eyeballNode.style.top = this._top + "px";
+//    };
+//
+//    Eyeball.prototype.mouseMoveHandler = function (event) {
+//        if (this._originGlobalLeft == -1 && this._originGlobalTop == -1) {
+//            var rect = this._eyeballNode.getBoundingClientRect();
+//            this._originGlobalLeft = rect.left;
+//            this._originGlobalTop = rect.top;
+//        }
+//
+//        var dy = event.pageY - this._originGlobalTop;
+//        var dx = event.pageX - this._originGlobalLeft;
+//
+//        var r = dx >= 0 ? 1 : -1;
+//
+//        var angle = Math.atan(dy / dx);
+//
+//        this._left = this.ORIGIN_LEFT + Math.cos(angle) * this.R * r;
+//        this._top = this.ORIGIN_TOP + Math.sin(angle) * this.R * r;
+//        this.syncStyle();
+//    };
+//
+//
+//    window.Eyeball = Eyeball;
+//})();
+</script>
+</html>

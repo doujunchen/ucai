@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    (function () {
+        var url="http://ucai.cn#a=hello&b=world";
+
+        var a=/#(.+)/g;
+
+        var result=a.exec(url);
+//        console.log(result);
+
+        var b=/#(\w{7})&(\w{7})(.+)/g;
+        var result=b.exec(a);
+//        console.log(result);
+
+        var p= /#(\w)=(\w+)&(\w)=(\w+)/g;
+        var result=p.exec(url);
+        console.log(result);
+        for (i=0;i<result.length;i++){
+//        var q=result[i];
+//        console.log(q);
+            var w=result[1];
+            var e=result[[2]];
+            var r=result[3];
+            var t=result[[4]];
+            var obj;
+            obj[result[1]]=result[2]
+
+    console.log(obj);
+
+//            console.log(r=result[3]);
+    }
+    })();
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var table=document.createElement("table");
+    table.style.width="300px";
+    table.border="2px";
+    document.body.appendChild(table);
+    var th=document.createElement("th");
+    th.style.width="50px";
+    th.style.height="30px";
+    th.style.backgroundColor="blue";
+    th.innerHTML="编程语言";
+    table.appendChild(th);
+    var th=document.createElement("th");
+    th.width="100px";
+    th.style.height="30px";
+    th.style.backgroundColor="blue";
+    th.innerHTML="描述";
+    table.appendChild(th);
+    var tr=document.createElement("tr");
+    tr.style.width="100%";
+    tr.style.height="30px";
+    tr.style.border="2px";
+    table.appendChild(tr);
+    var td=document.createElement("td");
+    td.style.width="50%";
+    td.style.height="30px";
+    td.style.backgroundColor="green";
+    td.style.border="2px";
+    td.innerHTML="JAVA";
+    tr.appendChild(td);
+    var td=document.createElement("td");
+    td.style.width="50%";
+    td.style.height="30px";
+    td.style.backgroundColor="green";
+    td.innerHTML="java";
+    tr.appendChild(td);
+    var tr=document.createElement("tr");
+    tr.style.width="100%";
+    tr.style.height="30px";
+    tr.style.border="2px";
+    table.appendChild(tr);
+    var td=document.createElement("td");
+    td.style.width="50%";
+    td.style.height="30px";
+    td.style.backgroundColor="red";
+    td.style.border="2px";
+    td.innerHTML="JavaScript";
+    tr.appendChild(td);
+    var td=document.createElement("td");
+    td.style.width="50%";
+    td.style.height="30px";
+    td.style.backgroundColor="red";
+    td.innerHTML="js";
+    tr.appendChild(td);
+</script>
+</body>
+</html>

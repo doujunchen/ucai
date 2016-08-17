@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<a id="show"href="#">张三</a>-->
+</body>
+<script>
+//    (function () {
+//        var student={name:"张三",}
+//        var btn=document.querySelector("#show");
+//        btn.onclick=function () {
+//            alert("名字："+student.name);
+//        }
+//    })();
+(function () {
+
+    function createStudent(name, age, gender) {//类的构造函数
+
+        var self = {name: name, age: age, gender: gender};//类的成员属性
+
+        self.asd = function aaa() {
+            var div = document.createElement("div");
+            var a = document.createElement("a");
+
+
+            a.innerHTML = self.name;
+            a.href = "#";
+            a.onclick = function () {
+                alert("名字:" + self.name + "\n年龄:" + self.age + "\n性别:" + self.gender);
+            };
+            div.appendChild(a);
+
+            var button=document.createElement("button");
+            button.innerHTML=self.name;
+            button.onclick=function () {
+                button.parentNode.removeChild(self.asd);
+            }
+            div.appendChild(button);
+
+            return div;
+        };
+
+
+        return self;
+    }
+//把一些数据和用于操作这些数据的函数写在一起；我们称这些为类。
+    var students = [
+        createStudent("张三", 10, "男"),
+        createStudent("李四", 12, "男"),
+        createStudent("丽丽", 9, "女")
+    ];
+
+    for (var i = 0; i < students.length; i++) {
+        document.body.appendChild(students[i].asd());
+    }
+
+})();
+</script>
+</html>

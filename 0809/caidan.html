@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding: 0;
+        }
+        #div{
+            width: 1000px;
+            height: 500px;
+            background-color: red;
+        }
+        .menu{
+            width:100px;height:30px;text-align:center;color:white;cursor:pointer;line-height:30px;
+            background-color: blue;display: none;position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="div">
+    <div class="menu">菜单</div>
+</div>
+</body>
+<script>
+    var div1 = document.getElementById("div");
+    var menu=document.querySelector("#div .menu");
+    div1.oncontextmenu=function (event) {//document代表所有文档。
+        menu.style.display="block";
+        menu.style.left=event.clientX+"px";
+        menu.style.top=event.clientY+"px";
+        return false;
+    }
+    document.onclick=function(){
+        menu.style.display="none";
+        href="ni"
+    }
+
+//        menu.onmousedown=function(event){
+
+//        if(aevent.button==2){
+//        a(div); {
+//        }
+//    };
+</script>
+</html>

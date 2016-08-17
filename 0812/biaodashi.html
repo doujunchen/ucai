@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+<script>
+    //正则表达式
+    //\d是匹配一个数字，等价于[0-9]; 大写D是非数字；\w是指字母（也包括数字，也匹配下划线）；大写\w是指不是字母，数字，下划线（空格）
+    //         /[^a-f]/g反义字符集。
+    //          /./匹配任意字符,（除了换行符）（每一个字付都输出）；（字符串或空字符）
+    //        /.{2}/g;  至少有两个重复出现，开始匹配
+    //         /.+/g;匹配前面的东西一个或多次（/\d+/g;）换成*是0次或多次（+常用）
+    //       /\d{3,}/g;  所有的三位数
+    var str="hello 2 world 5 30  20 10000 200";
+    var p=/0{2,3}/g;
+    //至少出现2个0，至多出现3个0
+    var result=p.exec(str);
+    console.log(result);
+
+    while(true){
+        var result =p.exec(str);
+        if(result){
+            console.log(result);
+        }else{
+            break;
+        }
+    }
+
+</script>
+</html>
